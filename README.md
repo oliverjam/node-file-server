@@ -138,3 +138,5 @@ function router(request, response) {
    - Check the network tab and you'll see failing requests for `.css`, `.js`, `.ico` and `.jpg` files
 1. Edit the router to make these requests work
    - Make sure they have the correct `content-type` header
+
+![](https://user-images.githubusercontent.com/9408641/77124124-eff96300-6a39-11ea-8230-ff5cd2f3e398.png)
