@@ -25,7 +25,7 @@ response.end(`
 `);
 ```
 
-but serving a binary image type (like a JPEG) would be very difficult. It's easier to store these as separate files and read their content when we need it.
+but serving binary file types (like a JPEG image) this way would be difficult. If you open a JPEG in a text editor you'll see a huge blob of incomprehensibly encoded characters. It's easier to store these as separate files and read their content when we need it.
 
 ## Using `fs`
 
@@ -37,7 +37,7 @@ Node provides the `fs` module for working with your computer's file-system. We c
 const fs = require("fs");
 ```
 
-`fs` is an object with lots of useful methods. Right now we want to read the contents of a file, so we'll use the `fs.readFile` method. It takes a file path as the first argument and a callback to be run once the file is available.
+`fs` is an object with lots of useful methods. Right now we want to read the contents of a file, so we'll use the `fs.readFile` method. It takes a file path as the first argument and a callback function for it to run once the file is available.
 
 ```js
 const fs = require("fs");
@@ -47,7 +47,7 @@ fs.readFile("workshop/test.txt", (error, file) => {
 });
 ```
 
-Run this and you should see something like `<Buffer 53 6f...>` logged. This is a memory buffer representing the contents of the file. If you want to see it represented as a JS string you can pass the file's encoding as the second argument:
+Run this and you should see something like `<Buffer 53 6f...>` logged. This is a [chunk of memory](https://nodejs.dev/nodejs-buffers) representing the contents of the file. If you want to see it represented as a JS string you can pass the file's encoding as the second argument:
 
 ```js
 const fs = require("fs");
@@ -88,10 +88,13 @@ File paths are actually quite complicated. The one we hard-coded above works on 
 We can use the `path` module's `path.join()` method to join strings together correctly.
 
 ```js
+const fs = require("fs");
+const path = require("path");
+
 fs.readFile(path.join("workshop", "test.txt"), (error, file) => {});
 ```
 
-There's one more problem: the path we've written is relative to the directory we ran our JS file from. `cd` into the `workshop` folder, then run `node index.js` and refresh the page. You should see an error, because there is no `"workshop"` directory inside of `workshop/`.
+There's one more problem: the path we've written is relative to the directory we ran our JS file from. `cd` into the `workshop` folder, then run `node index.js`. You should see an error logged, because there is no `"workshop"` directory inside of `workshop/`.
 
 Node provides a global variable called `__dirname` (that's two underscores). This will always be the path to the directory the currently executing file is inside. So in this case it will always be `stuff/on/your/computer/node-file-server/workshop/`. This make it safe to use in our `readFile`: it will always be correct no matter where we start our program.
 
@@ -101,7 +104,7 @@ fs.readFile(path.join(__dirname, "test.txt"), (error, file) => {});
 
 ## MIME types
 
-Multipurpose Internet Mail Extensions (MIME type) is a standard that determines what format a file is. You've encountered them already in the `content-type` HTTP header (like `"application/json"` or `"text/html"`).
+Multipurpose Internet Mail Extensions (or MIME type) is a standard that determines what format a file is. You've encountered them already in the `content-type` HTTP header (like `"application/json"` or `"text/html"`).
 
 MIME types are structured as `generic/specific`. For example `text/plain`, `text/html` and `text/css` are all kinds of text file, whereas `image/png` and `image/jpeg` are kinds of image file.
 
