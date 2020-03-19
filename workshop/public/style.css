@@ -1,0 +1,13 @@
+body {
+  max-width: 50rem;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: black;
+  color: white;
+  font-family: monospace;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
