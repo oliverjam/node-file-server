@@ -136,7 +136,9 @@ function router(request, response) {
 1. Run `node workshop/server.js`, then open `http://localhost:3000` in your browser
 1. You should see an HTML page loaded, but with no styles
    - Check the network tab and you'll see failing requests for `.css`, `.js`, `.ico` and `.jpg` files
-1. Edit the router to make these requests work
+1. Edit the `handlers/public.js` to make these requests work
    - Make sure they have the correct `content-type` header
+
+**Hint**: take a look at `handlers/home.js` for a refresher on `readFile` and paths.
 
 ![](https://user-images.githubusercontent.com/9408641/77124124-eff96300-6a39-11ea-8230-ff5cd2f3e398.png)
