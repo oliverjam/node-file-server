@@ -27,9 +27,16 @@ response.end(`
 
 but serving binary file types (like a JPEG image) this way would be difficult. If you open a JPEG in a text editor you'll see a huge blob of incomprehensibly encoded characters. It's easier to store these as separate files and read their content when we need it.
 
+## Setup
+
+1. Clone this repo
+1. Run `npm install` to install the project's dependencies
+
+This project has the `nodemon` module installed as a devDependency (you can see this in the `package.json`). This is a useful tool that will watch your files for changes and restart your server automatically when you save.
+
 ## Using `fs`
 
-Open `workshop/practice.js` in your editor. Remember you can run this file in your terminal using `node workshop/practice.js`.
+Open `workshop/practice.js` in your editor. Run `npm run practice` in your terminal to make your code auto-restart when you save changes.
 
 Node provides the `fs` module for working with your computer's file-system. We can import it using Node's `require` syntax:
 
@@ -133,7 +140,7 @@ function router(request, response) {
 ## Workshop
 
 1. Open `workshop/server.js` in your editor
-1. Run `node workshop/server.js`, then open `http://localhost:3000` in your browser
+1. Run `npm run dev`, then open `http://localhost:3000` in your browser
 1. You should see an HTML page loaded, but with no styles
    - Check the network tab and you'll see failing requests for `.css`, `.js`, `.ico` and `.jpg` files
 1. Edit the `handlers/public.js` to make these requests work
