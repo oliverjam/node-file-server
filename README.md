@@ -77,7 +77,7 @@ Since callbacks have no built-in way to handle errors (unlike promises with thei
 So generally you want to handle the error first in your callback, then deal with the "happy case".
 
 ```js
-fs.readFile("workshop/test.txt", "utf-8", (error, file) => {
+fs.readFile("not-real.txt", "utf-8", (error, file) => {
   if (error) {
     console.log(error);
   } else {
