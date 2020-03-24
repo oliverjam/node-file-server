@@ -101,7 +101,7 @@ const path = require("path");
 fs.readFile(path.join("workshop", "test.txt"), (error, file) => {});
 ```
 
-There's one more problem: the path we've written is relative to the directory we ran our JS file from. `cd` into the `workshop` folder, then run `node index.js`. You should see an error logged, because there is no `"workshop"` directory inside of `workshop/`.
+There's one more problem: the path we've written is relative to the directory we ran our JS file from. `cd` into the `workshop` folder, then run `node practice.js`. You should see an error logged, because there is no `"workshop"` directory inside of `workshop/`.
 
 Node provides a global variable called `__dirname` (that's two underscores). This will always be the path to the directory the currently executing file is inside. So in this case it will always be `stuff/on/your/computer/node-file-server/workshop/`. This make it safe to use in our `readFile`: it will always be correct no matter where we start our program.
 
