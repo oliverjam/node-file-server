@@ -2,17 +2,16 @@ const fs = require("fs");
 const path = require("path");
 
 const types = {
-  html: "text/html",
-  css: "text/css",
-  js: "application/javascript",
-  jpg: "image/jpeg",
-  ico: "image/x-icon",
+  ".html": "text/html",
+  ".css": "text/css",
+  ".js": "application/javascript",
+  ".jpg": "image/jpeg",
+  ".ico": "image/x-icon",
 };
 
 function publicHandler(request, response) {
   const url = request.url;
-  const urlArray = url.split(".");
-  const extension = urlArray[1];
+  const extension = path.extname(url);
   const type = types[extension];
   // public directory is one level above this, so we need the ".."
   const filePath = path.join(__dirname, "..", url);
