@@ -122,15 +122,16 @@ It's very important to set the `content-type` header correctly, as web browsers 
 It's easy to do this manually for one-off files, but if you want to write a generic endpoint that can serve any static file you need to map file extensions to MIME types:
 
 ```js
+const path = require("path");
+
 const types = {
-  html: "text/html",
-  css: "text/css",
-  js: "application/javascript",
+  ".html": "text/html",
+  ".css": "text/css",
+  ".js": "application/javascript",
 };
 
 function router(request, response) {
-  const urlArray = request.url.split("."); // e.g. "/style.css" -> ["/style", "css"]
-  const extension = urlArray[1]; // e.g. "css"
+  const extension = path.extname(request.url); // gets the file extension e.g. "styles/my-file.css" -> ".css"
   const type = types[extension]; // e.g. "text/css"
   response.writeHead(200, { "content-type": type });
   // ...
